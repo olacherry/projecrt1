@@ -61,10 +61,30 @@ void dynamic_array_push(dynamic_array_t* dynamic_array)
 	dynamic_array->ptr = array_new_push;
 	dynamic_array->element_count +=1;
 	printf("\n");
+	
 }
 
-
 void dynamic_array_delete(dynamic_array_t* dynamic_array)
+{
+	int num_index_del;
+	printf("Type array index for delete element: \n");
+	scanf("%i", &num_index_del );
+	int* array_new_del = new int[dynamic_array->element_count+1];
+	for (int i = 0; i<num_index_del; i++)
+	{
+		array_new_del[i] = dynamic_array->ptr[i];
+	}
+	for (int i = num_index_del ; i<dynamic_array->element_count; i++)
+	{
+		array_new_del[i] = dynamic_array->ptr[i+1];
+	}
+	dynamic_array->ptr = array_new_del;
+	dynamic_array->element_count -=1;
+	
+
+}
+
+void dynamic_array_deleteall(dynamic_array_t* dynamic_array)
 {
 	delete[] dynamic_array->ptr;
 	
@@ -90,9 +110,11 @@ int main()
 	dynamic_array_show(&dynamic_array);
 	dynamic_array_push(&dynamic_array);
 	dynamic_array_show(&dynamic_array);
+	dynamic_array_delete(&dynamic_array);
+	dynamic_array_show(&dynamic_array);
 	int a;
 	std::cin >> a;
 	
-	dynamic_array_delete(&dynamic_array);
+	dynamic_array_deleteall(&dynamic_array);
 	return 0;
 }
