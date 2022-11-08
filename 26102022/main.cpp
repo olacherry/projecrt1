@@ -39,16 +39,43 @@ void dynamic_array_add(dynamic_array_t* dynamic_array, int value)
 		
 	}
 }
+void dynamic_array_push(dynamic_array_t* dynamic_array)
+{	printf("\n");
+	int* array_new_push = new int[dynamic_array->element_count+1];
+	int num_index;
+	printf("Type array index for push new element: \n");
+	scanf("%i", &num_index );
+	int num;
+	printf("Type new array element: \n");
+	scanf("%i", &num );
+	
+	for (int i = 0; i < num_index; i++)
+	{
+		array_new_push[i] = dynamic_array->ptr[i];
+	}
+	array_new_push[num_index] = num;
+	for (int i = num_index+1; i < dynamic_array->element_count+1; i++)
+	{
+		array_new_push[i] = dynamic_array->ptr[i-1];
+	}
+	dynamic_array->ptr = array_new_push;
+	dynamic_array->element_count +=1;
+	printf("\n");
+}
+
+
 void dynamic_array_delete(dynamic_array_t* dynamic_array)
 {
 	delete[] dynamic_array->ptr;
+	
 }
 void dynamic_array_show(const dynamic_array_t* dynamic_array)
 {
 	for(int i = 0; i<dynamic_array->cur_element_count;i++){
-		std::cout << dynamic_array->ptr[i] << std::endl;
+		printf("%i ", dynamic_array->ptr[i] );
 	}
 }
+
 int main()
 {
 	
@@ -60,6 +87,8 @@ int main()
 	{
 		dynamic_array_add(&dynamic_array, i*i);
 	}
+	dynamic_array_show(&dynamic_array);
+	dynamic_array_push(&dynamic_array);
 	dynamic_array_show(&dynamic_array);
 	int a;
 	std::cin >> a;
