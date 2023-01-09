@@ -46,13 +46,15 @@ int linked_list_find (LinkedList* ptr,LinkedListNode* out, int value)
 
 int linked_list_get(LinkedList* ptr,LinkedListNode* out, int index)
 {
-
+    int counter = 0;
     for (LinkedListNode* cur_node = ptr->first;
          cur_node != nullptr; cur_node = cur_node->next)
     {
         for (int i = 0; i < cur_node->CurElementCount; i++){
-            if( == index)
+            counter ++;
+            if( counter == index)
             {
+                
                 *out = *cur_node;
                 return cur_node->mass[i];
             }}
