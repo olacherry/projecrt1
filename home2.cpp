@@ -216,6 +216,9 @@ int main()
     cout << " " << endl;
     int a;
     linked_list_find(&ptr, a, 100);
+    
+    node* node;
+    int mass = linked_list_get(list, node, 3)
 
     linker_list_delete(&ptr); // удаление двусвязного списка из памяти компьютера
 
